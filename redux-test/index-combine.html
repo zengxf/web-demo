@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redux basic example</title>
+    <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+  </head>
+  <body>
+    <script>
+      // reducers.js
+		theDefaultReducer = (state = 0, action) => {
+			console.log("theDefaultReducer" + "\t => " + action.type)
+			if (action.type == "aa")
+				return state * 10;
+			return state
+		}
+		firstNamedReducer = (state = 1, action) => {
+			console.log("firstNamedReducer" + "\t => " + action.type)
+			if (action.type == "aa")
+				return state * 10;
+			return state
+		}      
+		secondNamedReducer = (state = 2, action) => {
+			console.log("secondNamedReducer" + "\t => " + action.type)
+			if (action.type == "aa")
+				return state * 10;
+			return state
+		}
+
+		// Use ES6 object literal shorthand syntax to define the object shape
+		const rootReducer = Redux.combineReducers({
+		  def: theDefaultReducer,
+		  firstNamedReducer,
+		  secondNamedReducer
+		})
+
+		const store = Redux.createStore(rootReducer)
+		console.log(store.getState())
+		store.dispatch({type: "aa"})
+		console.log(store.getState())
+    </script>
+  </body>
+</html>
