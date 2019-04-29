@@ -1,0 +1,23 @@
+{
+  "name": "date-test",
+  "version": "1.0.0",
+  "description": "test",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "test": "parcel watch src/index.html"
+  },
+  "author": "zxf",
+  "license": "ISC",
+  "dependencies": {
+    "antd": "^3.16.6",
+    "moment": "^2.24.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "parcel": "^1.12.3"
+  }
+}
