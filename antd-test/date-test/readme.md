@@ -6,6 +6,7 @@
 ### 设置中文提示
 - `import zhCN from 'antd/lib/locale-provider/zh_CN';` 
 - `<LocaleProvider locale={zhCN}>`
+- `moment.locale('zh-cn');`
 - 这样日期组件会显示中文
 
 ### 导入 css
