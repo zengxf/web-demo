@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "test",
   "scripts": {
-    "start": "parcel src/index.html",
+    "start": "parcel src/index.html --port 1111",
+    "start-serve": "parcel serve src/index.html --port 1111",
+    "build": "parcel build src/index.html",
     "test": "parcel watch src/index.html"
   },
   "author": "zxf",
