@@ -14,8 +14,9 @@ app.use(
   })
 )
 
-app.use(bundler.middleware())
 
 var port = process.env.PORT;
 console.info(`port: ${port}`);
+
+app.use(bundler.middleware())
 app.listen(Number(port || 1234))
