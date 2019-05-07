@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Remote login with axios",
   "scripts": {
-    "start": "node root",
+    "start": "set PORT=1266 && node root",
     "build": "parcel build src/index.html",
     "test": "parcel watch src/index.html"
   },
