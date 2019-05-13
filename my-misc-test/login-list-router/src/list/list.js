@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import { Table, Divider, Tag } from 'antd';
 import reqwest from 'reqwest';
@@ -24,6 +25,14 @@ const columns = [{
 }, {
     title: "cell-phone",
     dataIndex: 'cell-phone'
+}, {
+    title: "操作",
+    key: 'action',
+    render: (text, record) => (
+        <span>
+            <Link to={{ pathname: '/list/' + record.login.uuid, query: { name: record.name.first } }}>详情-{record.name.first}</Link>
+        </span>
+    )
 }];
 
 class List extends React.Component {
@@ -53,13 +62,12 @@ class List extends React.Component {
     }
 
     fetch = (params = {}) => {
-        console.log('params:', params);
         this.setState({ loading: true });
         reqwest({
             url: 'https://randomuser.me/api',
             method: 'get',
             data: {
-                results: 10,
+                results: 3,
                 ...params,
             },
             type: 'json',

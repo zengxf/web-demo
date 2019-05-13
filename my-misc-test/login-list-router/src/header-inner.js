@@ -5,19 +5,19 @@ import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import { Breadcrumb } from 'antd';
 
-class Header extends React.Component {
+class InnerHeader extends React.Component {
     render() {
         return (
             <Breadcrumb>
                 <Breadcrumb.Item>
-                    <a href="/list">List</a>
+                    <Link to="/list">List</Link>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>
-                    <a href="/login">Login</a>
+                    <Link to="/login">Login</Link>
                 </Breadcrumb.Item>
             </Breadcrumb>
         )
     };
 }
 
-ReactDOM.render(<Header />, document.getElementById("header"))
+export default InnerHeader
