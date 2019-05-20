@@ -8,13 +8,14 @@
     <div>
       <p>
         Clicked: <span id="value">0</span> times
-        <button id="increment">+</button>
-        <button id="decrement">-</button>
-        <button id="incrementIfOdd">Increment if odd</button>
-        <button id="incrementAsync">Increment async</button>
+        <button onclick="onIncrement()">+</button>
+        <button onclick="onDecrement()">-</button>
+        <button onclick="onIncrementIfOdd()">Increment if odd</button>
+        <button onclick="onIncrementAsync()">Increment async</button>
       </p>
     </div>
     <script>
+	
       function counter(state = 0, action) {
         switch (action.type) {
           case 'INCREMENT':
@@ -32,27 +33,24 @@
       }
       render()
       unsubscribe = store.subscribe(render)
-      document.getElementById('increment')
-        .addEventListener('click', function () {
-          store.dispatch({ type: 'INCREMENT' , payload: 1 })
-        })
-      document.getElementById('decrement')
-        .addEventListener('click', function () {
-          store.dispatch({ type: 'DECREMENT' , payload: 1})
-        })
-      document.getElementById('incrementIfOdd')
-        .addEventListener('click', function () {
-          if (store.getState() % 2 !== 0) {
-            store.dispatch({ type: 'INCREMENT', payload: 1 })
-          }
-        })
-      document.getElementById('incrementAsync')
-        .addEventListener('click', function () {
-          setTimeout(function () {
-            store.dispatch({ type: 'INCREMENT', payload: 10 })
-			
-          }, 1000)
-        })
+	  
+	  function onIncrement() {
+	    store.dispatch({ type: 'INCREMENT' , payload: 1 })
+	  }
+      function onDecrement() {
+        store.dispatch({ type: 'DECREMENT' , payload: 1})
+      }
+      function onIncrementIfOdd() {
+        if (store.getState() % 2 !== 0) {
+          store.dispatch({ type: 'INCREMENT', payload: 1 })
+        }
+      }
+      function onIncrementAsync() {
+        setTimeout(function () {
+          store.dispatch({ type: 'INCREMENT', payload: 10 })
+        }, 1000)
+      }
+	  
     </script>
   </body>
 </html>
