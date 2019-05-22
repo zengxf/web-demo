@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Markdown-Test</title>
+</head>
+
+<body>
+
+    <textarea id="contentArea" rows="20" cols="120">
+# Marked in browser
+## test
+- Rendered by **marked**.
+- test
+  - test2
+
+## 表格
+a  | b  | c
+-- | -- | --
+1  | 2  | 3
+
+## 公式
+$$ x^{y^z}=(1+{\rm e}^x)^{-2xy^w} $$
+
+## 公式2
+$ x^{y}=z^{b} $
+
+## 代码
+```Java
+/*** 查找 Boss 对应的所有组 */
+protected List findTeamListByBoss(String bossId, Integer year, Integer month) {
+    List groups = this.findTeamGroupList(bossId);
+    return groups;
+}
+```
+
+## 代码 def
+```
+// js 代码
+class CodeBlock extends React.PureComponent {
+    constructor(props) {
+        super(props)
+        this.setRef = this.setRef.bind(this)
+    }
+}
+```
+    </textarea>
+
+    <div id="markdownDiv"></div>
+    <script src="./index.js"></script>
+
+</body>
+
+</html>

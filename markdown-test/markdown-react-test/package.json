@@ -1,0 +1,22 @@
+{
+  "name": "marked-mathjax-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html"
+  },
+  "author": "zxf",
+  "license": "ISC",
+  "dependencies": {
+    "@nteract/markdown": "^4.0.0",
+    "highlight.js": "^9.15.6",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "parcel": "^1.12.3"
+  }
+}

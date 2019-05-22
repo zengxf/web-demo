@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Markdown-Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
+        async></script>
+	<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+	<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <textarea id="contentArea" rows="20" cols="120">
+# Marked in browser
+## test
+- Rendered by **marked**.
+- test
+  - test2
+
+## 表格
+a  | b  | c
+-- | -- | --
+1  | 2  | 3
+
+## 公式
+$$ x^{y^z}=(1+{\rm e}^x)^{-2xy^w} $$
+
+## 公式2
+$ x^{y}=z^{b} $
+
+## 代码
+```java
+/*** 查找 Boss 对应的所有组 */
+protected List findTeamListByBoss(String bossId, Integer year, Integer month) {
+    // test
+    List groups = this.findTeamGroupList(bossId);
+    return groups;
+}
+```
+    </textarea>
+
+    <div id="markdownDiv1"></div>
+    <div id="markdownDiv2"></div>
+
+    <script>
+		marked.setOptions({
+		  renderer: new marked.Renderer(),
+		  gfm: true,
+		  tables: true,
+		  escaped : true,
+		  breaks: false,
+		  pedantic: false,
+		  sanitize: false,
+		  smartLists: true,
+		  smartypants: false,
+		  highlight: function (code, lang) {
+			return hljs.highlightAuto(code).value;
+		  }
+		});
+        function onPreview() {
+            var content = document.getElementById('contentArea').value;
+            document.getElementById('markdownDiv1').innerHTML = marked(content);
+        }
+        onPreview();
+    </script>
+
+</body>
+
+</html>
