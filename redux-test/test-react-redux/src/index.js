@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
+import { DECREASE_KEY, ReduxDecrease } from './decrease'
 
 // React component
 class Counter extends Component {
@@ -12,6 +13,7 @@ class Counter extends Component {
       <div>
         <span>{value}</span>
         <button onClick={onIncrease}>Increase</button>
+        <ReduxDecrease />
       </div>
     )
   }
@@ -31,6 +33,8 @@ function counter(state = { count: 0 }, action) {
   switch (action.type) {
     case 'increase':
       return { count: count + 1 }
+    case DECREASE_KEY:
+      return { count: count - 1 }
     default:
       return state
   }
