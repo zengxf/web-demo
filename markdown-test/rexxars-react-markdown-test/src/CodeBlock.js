@@ -13,6 +13,9 @@ export class CodeBlock extends React.PureComponent {
     setRef(el) {
         this.codeEl = el
     }
+    // setRef = (el) => {
+    //     this.codeEl = el
+    // }
 
     componentDidMount() {
         hljs.highlightBlock(this.codeEl)
