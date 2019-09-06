@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import MarkdownRender from "@nteract/markdown";
 import CodeBlock from "./CodeBlock";
+import './my-md-table.css';
 
 var area = document.getElementById('contentArea');
 
@@ -18,11 +19,9 @@ class HelloMessage extends React.Component {
 }
 
 function onAreaChange(e) {
-    console.info(e)
     var markdownDiv = document.getElementById("markdownDiv");
     ReactDOM.render(<HelloMessage />, markdownDiv);
 }
 
 onAreaChange();
-
-area.addEventListener("keydown", onAreaChange);
+area.addEventListener("keyup", onAreaChange);

@@ -1,0 +1,30 @@
+{
+  "name": "marked-mathjax-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html"
+  },
+  "author": "zxf",
+  "license": "ISC",
+  "dependencies": {
+    "@matejmazur/react-mathjax": "^0.1.10",
+    "highlight.js": "^9.15.10",
+    "katex": "^0.11.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-katex": "^2.0.2",
+    "react-markdown": "^4.2.2",
+    "remark-math": "^1.0.6",
+    "remark-parse": "^6.0.3",
+    "table.css": "0.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "parcel": "^1.12.3"
+  }
+}

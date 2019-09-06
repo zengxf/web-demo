@@ -13,14 +13,10 @@ class CodeBlock extends React.PureComponent {
     }
 
     componentDidMount() {
-        this.highlightCode()
+        hljs.highlightBlock(this.codeEl)
     }
 
     componentDidUpdate() {
-        this.highlightCode()
-    }
-
-    highlightCode() {
         hljs.highlightBlock(this.codeEl)
     }
 
