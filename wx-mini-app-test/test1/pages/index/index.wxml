@@ -1,0 +1,3 @@
+<button bindtap="gotoLogs">跳转 logs # navigateTo</button>
+<button bindtap="gotoLogs2">跳转 logs # redirectTo</button>
+<button bindtap="gotoList">跳转到 List</button>
