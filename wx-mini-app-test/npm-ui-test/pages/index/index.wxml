@@ -1,0 +1,13 @@
+
+
+<van-button bindtap="show" type="primary">按钮</van-button>
+<van-button bindtap="show2" type="primary">按钮2</van-button>
+<van-button bindtap="show3" type="primary">按钮3</van-button>
+
+<van-notify id="van-notify" />
+<van-dialog id="van-dialog" />
+<van-toast id="van-toast" />
+
+<view class="container">
+  <towxml nodes="{{article}}"/>
+</view>

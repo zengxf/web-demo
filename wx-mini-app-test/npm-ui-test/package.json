@@ -1,0 +1,10 @@
+{
+  "name": "npm-ui-test",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "@vant/weapp": "^1.0.6",
+    "miniprogram-sm-crypto": "^0.1.0",
+    "towxml": "^3.0.0"
+  }
+}
