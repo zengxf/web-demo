@@ -17,3 +17,12 @@
 
 ## 使用 Taro-UI
 - `npm install taro-ui`
+
+## 微信公众平台后台
+- https://mp.weixin.qq.com
+
+## 排除编译
+- 要引入 `path` 模块
+  - `const path = require('path')`
+- 用相当路径
+  - `path.resolve(__dirname, '..', 'src/xx/xx.js')`

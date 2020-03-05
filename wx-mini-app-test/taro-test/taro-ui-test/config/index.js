@@ -1,3 +1,5 @@
+const path = require('path')
+
 const config = {
     projectName: 'taro-ui-test',
     date: '2020-3-4',
@@ -25,7 +27,18 @@ const config = {
     plugins: [],
     defineConstants: {
     },
-    mini: {        ,
+    copy: {
+        patterns: [
+            { from: 'src/wemark', to: 'dist/wemark' }
+        ],
+        options: {}
+    },
+    mini: {
+        compile: {
+            exclude: [
+                path.resolve(__dirname, '..', 'src/wemark/remarkable.js')
+            ]
+        },
         postcss: {
             pxtransform: {
                 enable: true,

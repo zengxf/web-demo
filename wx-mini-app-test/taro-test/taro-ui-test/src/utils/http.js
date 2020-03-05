@@ -8,14 +8,19 @@ const loginPage = '/pages/login/login'
 
 
 /** GET 请求，参数将转化到 url 拼接 */
-function get(url, params, doSuccess, doFail) {
+export function get(url, params, doSuccess, doFail) {
     url += jointUrl(params)
     request(url, "GET", null, doSuccess, doFail)
 }
 
 /** POST 请求 */
-function post(url, jsonData, doSuccess, doFail) {
+export function post(url, jsonData, doSuccess, doFail) {
     request(url, "POST", jsonData, doSuccess, doFail)
+}
+
+/** PUT 请求 */
+export function put(url, jsonData, doSuccess, doFail) {
+    request(url, "PUT", jsonData, doSuccess, doFail)
 }
 
 /** 请求的封装 */
@@ -53,7 +58,7 @@ function request(url, method, data, doSuccess, doFail) {
     })
 }
 
-
+// 问号后面拼接参数
 function jointUrl(obj) {
     const paramArr = []
     let param = ''
@@ -74,6 +79,6 @@ function jointUrl(obj) {
     return param
 }
 
-module.exports.post = post
-module.exports.get = get
-module.exports.request = request
+// module.exports.post = post
+// module.exports.get = get
+// module.exports.request = request

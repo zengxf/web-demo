@@ -1,7 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtList, AtListItem, AtToast, AtDivider } from "taro-ui"
-import { TaroRichText } from 'taro_rich_text';
 
 const http = require('../../utils/http.js')
 const format = require('../../utils/format.js')
@@ -10,7 +9,7 @@ export default class Item extends Component {
     config = {
         navigationBarTitleText: '详情',
         usingComponents: {
-            "wxparser": "plugin://wxparserPlugin/wxparser"
+            wemark: '../../wemark/wemark'
         }
     }
 
@@ -27,11 +26,7 @@ export default class Item extends Component {
     }
 
     fetch = () => {
-        var rt = `
-        # test-h1
-        - test
-          - test-11
-                `
+        var rt = '# h1\n## h2\n- test\n  - test-11'
         console.info("rt", rt)
         this.setState({ richText: rt })
         // this.setState({ loading: true })
@@ -43,11 +38,7 @@ export default class Item extends Component {
     render() {
         return (
             <View >
-                <TaroRichText
-                    raw={false}
-                    type='markdown'
-                    richText={this.state.richText}
-                />
+                <wemark md={this.state.richText} link highlight type='wemark' />
             </View>
         )
     }
