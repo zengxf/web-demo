@@ -23,6 +23,20 @@ export function put(url, jsonData, doSuccess, doFail) {
     request(url, "PUT", jsonData, doSuccess, doFail)
 }
 
+/** Promise 模式调用 */
+export const get2 = (url, params) => {
+    url += jointUrl(params)
+    return request2(url, null, 'GET')
+}
+export const post2 = (url, data) => request2(url, data, 'POST');
+export const put2 = (url, data) => request2(url, data, 'PUT');
+export const del2 = (url, data) => request2(url, data, 'DELETE');
+const request2 = (url, data, method) => {
+    return new Promise((resolve, reject) =>
+        request(url, method, data, (res) => resolve(res), (res) => reject(res))
+    )
+}
+
 /** 请求的封装 */
 function request(url, method, data, doSuccess, doFail) {
     var token = Taro.getStorageSync(constant.USER_TOKEN_KEY)

@@ -24,6 +24,15 @@ function success(msg, duration) {
     })
 }
 
+export function confirm(obj) {
+    Taro.showModal(obj)
+        .then(res => {
+            if (res.confirm) {
+                obj.onOk()
+            }
+        })
+}
+
 module.exports.warn = warn;
 module.exports.info = info;
 module.exports.success = success;

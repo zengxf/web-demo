@@ -1,7 +1,7 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Picker } from '@tarojs/components'
+import { Picker, View } from '@tarojs/components'
+import { Component } from '@tarojs/taro'
+import { AtAccordion, AtDivider, AtInput, AtList, AtListItem, AtSwitch, AtToast } from "taro-ui"
 import { NoteItem } from './note-item'
-import { AtList, AtListItem, AtToast, AtDivider, AtInput, AtSwitch } from "taro-ui"
 
 const show = require('../../utils/show.js')
 const http = require('../../utils/http.js')
@@ -16,7 +16,7 @@ export default class Index extends Component {
         super(props)
         this.state = {
             loading: false,
-            listSign: 1,
+            isWaitReview: true,
             dateStr: format.dateYmd(new Date()),
             noteId: 0,
             data: [],
@@ -25,42 +25,35 @@ export default class Index extends Component {
     }
 
     componentDidMount() {
-        this.fetch()
+        this.onSearch()
     }
 
-    fetch = () => {
-        this.setState({ loading: true })
-        http.get("/api/note/review/find-list", { status: this.state.listSign, date: this.state.dateStr }, res => {
-            this.setState({ loading: false, data: res })
-        })
-    }
-
+    // --- 显示
     showList = () => {
         this.setState({ hiddenItem: true })
-        this.fetch()
+        this.onSearch()
     }
-
     showItem = (reviewId, noteId) => {
         this.setState({ hiddenItem: false, noteId })
-        this.noteItemRef.findItemInfo(reviewId, noteId)
+        this.noteItemRef.findItemInfo(reviewId, noteId, this.state.isWaitReview)
     }
 
-    // ---
+    // --- 上一页、下一页
     showPrevious = () => {
         this.updateToReviewed(-1)
     }
-
     showNext = () => {
         this.updateToReviewed(+1)
     }
-
     updateToReviewed = (sign) => {
         let arr = []
         this.state.data.forEach(type => { arr = [...arr, ...type.notes] })
         let curIndex = arr.findIndex(note => note.noteId == this.state.noteId)
         if (sign > 0 && curIndex + 1 == arr.length) {
             show.info("已是最后一项")
-            // this.fetchNotReview()
+            if (this.state.isWaitReview) {
+                this.fetchNotReview()
+            }
             return
         } else if (sign < 0 && curIndex == 0) {
             show.info("已是第一项")
@@ -69,37 +62,61 @@ export default class Index extends Component {
         let reviewNote = arr[curIndex + sign]
         this.showItem(reviewNote.reviewId, reviewNote.noteId)
     }
-    // ---
-
-    onDateChange = (e) => {
-        this.setState({ dateStr: e.detail.value })
+    fetchNotReview = () => {
+        http.get("/api/note/review/find-not-review-recent-date", {}, res => {
+            let date = res.map.recent_date
+            if (date && date !== this.state.dateStr) {
+                show.confirm({
+                    title: `【${date}】还有笔记待复习`,
+                    content: "是否直接跳转",
+                    onOk: () => {
+                        this.setState({ dateStr: date }, this.showList)
+                    }
+                })
+            }
+        })
     }
 
-    onStatusChange = (v) => {
-        this.setState({ listSign: v ? 1 : 2 })
+    // --- 搜索
+    onDateChange = (e) => {
+        this.setState({ dateStr: e.detail.value }, this.onSearch)
+    }
+    onStatusChange = (isWaitReview) => {
+        this.setState({ isWaitReview }, this.onSearch)
+    }
+    onSearch = () => {
+        this.setState({ loading: true })
+        let reviewStatus = this.state.isWaitReview ? 1 : 2
+        http.get("/api/note/review/find-list", { status: reviewStatus, date: this.state.dateStr }, res => {
+            this.setState({ loading: false, data: res })
+            this.delNoteIds = []
+        })
     }
 
     render() {
         return (
-            <View >
+            <View>
                 <AtToast isOpened={this.state.loading} text="加载中" icon="loading"></AtToast>
                 <View hidden={!this.state.hiddenItem}>
-                    <View className='page-section'>
-                        <Text>日期选择器</Text>
-                        <View>
+                    <View>
+                        <AtAccordion
+                            title='搜索-复习计划'
+                            icon={{ value: 'search', size: '15' }}
+                            open={this.state.searchOpen}
+                            onClick={(v) => this.setState({ searchOpen: v })}
+
+                        >
                             <Picker mode='date' onChange={this.onDateChange}>
                                 <AtInput
-                                    title='日期'
-                                    type='text'
+                                    title='日期' type='text'
                                     placeholder='请选择日期'
-                                    value={this.state.dateStr}
-                                />
+                                    value={this.state.dateStr} />
                             </Picker>
                             <AtSwitch
-                                title={this.listSign == 1 ? '待复习' : '已复习'}
-                                checked={this.listSign == 1}
+                                title={this.state.isWaitReview ? '待复习' : '已复习'}
+                                checked={true}
                                 onChange={this.onStatusChange} />
-                        </View>
+                        </AtAccordion>
                     </View>
                     {
                         this.state.data.map(type => {
