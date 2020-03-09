@@ -1,6 +1,6 @@
 import { Picker, View } from '@tarojs/components'
 import { Component } from '@tarojs/taro'
-import { AtAccordion, AtDivider, AtInput, AtList, AtListItem, AtSwitch, AtToast } from "taro-ui"
+import { AtAccordion, AtDivider, AtInput, AtList, AtIcon, AtListItem, AtSwitch, AtFab, AtToast, AtActionSheet, AtActionSheetItem, AtFloatLayout, AtButton } from "taro-ui"
 import { NoteItem } from './note-item'
 
 const show = require('../../utils/show.js')
@@ -139,6 +139,22 @@ export default class Index extends Component {
                             )
                         })
                     }
+                    <View style={{ position: 'fixed', bottom: '30rpx', right: '30rpx' }}>
+                        <AtFab onClick={() => this.setState({ moreOpBtn: true })}>
+                            <Text className='at-fab__icon at-icon at-icon-menu'></Text>
+                        </AtFab>
+                    </View>
+                    <AtFloatLayout isOpened={this.state.moreOpBtn} onClose={() => this.setState({ moreOpBtn: false })} title='更多操作'>
+                        <View style={{ marginBottom: '10rpx' }}>
+                            <AtButton type='primary'> 操作1 </AtButton>
+                        </View>
+                        <View style={{ marginBottom: '10rpx' }}>
+                            <AtButton type='primary'> 操作1 </AtButton>
+                        </View>
+                        <View style={{ marginBottom: '10rpx' }}>
+                            <AtButton type='primary'> 操作1 </AtButton>
+                        </View>
+                    </AtFloatLayout>
                 </View>
                 <View hidden={this.state.hiddenItem}>
                     <NoteItem
