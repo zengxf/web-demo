@@ -1,14 +1,11 @@
 import { View } from '@tarojs/components'
 import { Component } from '@tarojs/taro'
-import 'taro-parse/dist/style/main.scss'
 import TaroParser from 'taro-parse'
+import 'taro-parse/dist/style/main.scss'
 
-const http = require('../../utils/http.js')
-const format = require('../../utils/format.js')
-
-export default class Item extends Component {
+export default class TestMd extends Component {
     config = {
-        navigationBarTitleText: '详情',
+        navigationBarTitleText: '测试-Markdown',
         usingComponents: {
             wemark: '../../wemark/wemark'
         }
@@ -25,7 +22,6 @@ export default class Item extends Component {
     componentDidMount() {
         this.fetch()
     }
-
     fetch = () => {
         // var rt = '# h1\n## h2\n- test\n  - test-11'
         var rt = `

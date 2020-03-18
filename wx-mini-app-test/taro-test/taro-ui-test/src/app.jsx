@@ -10,7 +10,8 @@ class App extends Component {
 
     config = {
         pages: [
-            'pages/item/item',
+            'pages/test/test-echarts',
+            'pages/test/test-md',
             'pages/index/index',
             'pages/login/login',
         ],

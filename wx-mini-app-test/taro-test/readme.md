@@ -26,3 +26,6 @@
   - `const path = require('path')`
 - 用相当路径
   - `path.resolve(__dirname, '..', 'src/xx/xx.js')`
+
+## ECharts 在线构建
+- https://www.echartsjs.com/zh/builder.html

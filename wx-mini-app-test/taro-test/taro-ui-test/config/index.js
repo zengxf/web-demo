@@ -29,7 +29,16 @@ const config = {
     },
     copy: {
         patterns: [
-            { from: 'src/wemark', to: 'dist/wemark' }
+            { from: 'src/wemark', to: 'dist/wemark' },
+            { // 忽略 echarts.js
+                from: 'node_modules/taro-echarts/components/ec-canvas/',
+                to: 'dist/npm/taro-echarts/components/ec-canvas',
+                ignore: ['ec-canvas.js', 'wx-canvas.js', 'echarts.js']
+            },
+            { // 添加新的 copy 规则；但貌似没用，可手动替换
+                from: 'src/static/',
+                to: 'dist/npm/taro-echarts/components/ec-canvas',
+            }
         ],
         options: {}
     },
@@ -60,6 +69,7 @@ const config = {
         }
     },
     h5: {
+        esnextModules: ['taro-echarts'],
         publicPath: '/',
         staticDirectory: 'static',
         postcss: {
