@@ -27,5 +27,6 @@
 - 用相当路径
   - `path.resolve(__dirname, '..', 'src/xx/xx.js')`
 
-## ECharts 在线构建
-- https://www.echartsjs.com/zh/builder.html
+## ECharts 使用
+- 在线构建 https://www.echartsjs.com/zh/builder.html
+- 小程序中使用 https://github.com/eyelly-wu/taro-echarts/issues/5
